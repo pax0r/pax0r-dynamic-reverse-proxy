@@ -5,7 +5,7 @@ from sanic import Sanic
 from sanic.response import json
 from sanic.views import HTTPMethodView
 
-from pax0r_ddns_server.backends.base import BackendBase
+from pax0r_ddns_server.dns_backends.base import BackendBase
 from pax0r_ddns_server.containers import Container
 
 

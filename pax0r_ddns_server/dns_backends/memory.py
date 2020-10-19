@@ -1,4 +1,4 @@
-from pax0r_ddns_server.backends.base import BackendBase
+from pax0r_ddns_server.dns_backends.base import BackendBase
 
 
 class MemoryBackend(BackendBase):
