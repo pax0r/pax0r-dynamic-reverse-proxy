@@ -1,7 +1,7 @@
 # Pax0r DynamicDNS
 
 Simple application to setup DDNS service on your host in internet. 
-Designed for personal use so right now it does not support multiple users.
+Designed for personal use so right now it does not support multiple users. My main reason was to create a DynamicDNS service for my local Home Assistant instalation, as a replacement for DuckDNS.
 DNS server uses `dnslib` and HTTP server runs on `sanic`.
 
 ## Running
