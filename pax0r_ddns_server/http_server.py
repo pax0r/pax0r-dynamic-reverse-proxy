@@ -33,7 +33,6 @@ class SimpleView(HTTPMethodView):
 
     @auth_required()
     def post(self, request, domain):
-        data = request.json
         self.dns_backend.set_ip(domain, request.ip)
         return self.get(request, domain)
 

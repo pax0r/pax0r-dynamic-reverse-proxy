@@ -1,0 +1,25 @@
+name: Run tests
+
+on: [push, pull_request]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+
+    - name: Install dependencies with pipenv
+      run: |
+        pip install pipenv
+        pipenv install -d
+    
+    - name: Test with pytest
+      run: |
+        pipenv run test
