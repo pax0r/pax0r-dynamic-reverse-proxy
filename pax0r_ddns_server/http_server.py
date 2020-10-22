@@ -1,13 +1,12 @@
 import functools
-import sys
 
 from dependency_injector.wiring import Provide
 from sanic import Sanic
 from sanic.response import json
 from sanic.views import HTTPMethodView
 
-from pax0r_ddns_server.dns_backends.base import BackendBase
 from pax0r_ddns_server.containers import Container
+from pax0r_ddns_server.dns_backends.base import BackendBase
 
 
 def auth_required(auth_backend=Provide[Container.auth_backend], **backend_kwargs):
