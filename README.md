@@ -13,11 +13,9 @@ DNS server uses `dnslib` and HTTP server runs on `sanic`.
 
 # TODO:
 
-- Pipfile
-- Authorization
 - Set IP from POST request
 - Persistent backends
 - Separate daemon for http and dns (right now it's single process with two threads)
 - Client applications
-- Unit tests
+- More unit tests
 - Rewrite DNSServer to work on asyncio
