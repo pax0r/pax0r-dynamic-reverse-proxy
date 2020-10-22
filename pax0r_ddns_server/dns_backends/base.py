@@ -9,4 +9,3 @@ class BackendBase(metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def set_ip(self, domain, ip):
         pass
-

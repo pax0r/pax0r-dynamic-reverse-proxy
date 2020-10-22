@@ -20,9 +20,12 @@ class DynamicResolver:
             zone = "{} {} A {}".format(qname, self.ttl, ip)
             reply.add_answer(*RR.fromZone(zone))
         else:
-            reply.header.rcode = getattr(RCODE, 'NXDOMAIN')
+            reply.header.rcode = getattr(RCODE, "NXDOMAIN")
         return reply
 
 
-def create_server(bind_host: str = Provide[Container.config.dns_host], bind_port: int = Provide[Container.config.dns_port]):
+def create_server(
+    bind_host: str = Provide[Container.config.dns_host],
+    bind_port: int = Provide[Container.config.dns_port],
+):
     return DNSServer(DynamicResolver(), port=bind_port, address=bind_host)
