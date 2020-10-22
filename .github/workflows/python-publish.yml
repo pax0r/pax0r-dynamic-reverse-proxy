@@ -9,10 +9,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Install dependecies
-      uses: VaultVulp/action-pipenv@v2.0.1
+
+    - name: Setup Python
+      uses: actions/setup-python@v1
       with:
-        command: install -d # Install all dependencies, including development ones
+        python-version: 3.8
+
+    - name: Install dependencies with pipenv
+      run: |
+        pip install pipenv
+        pipenv install --deploy --dev
+    
     - name: Test with pytest
       run: |
         pytest
