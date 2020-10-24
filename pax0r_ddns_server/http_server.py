@@ -18,15 +18,17 @@ def auth_required(**backend_kwargs):
             if self.auth_backend.is_authorized(request, **backend_kwargs):
                 return f(self, request, *args, **kwargs)
             raise Unauthorized("Auth required.")
+
         return wrapped
+
     return decorator
 
 
 class SimpleView(HTTPMethodView):
     def __init__(
-            self,
-            auth_backend: AuthBase = Provide[Container.auth_backend],
-            dns_backend: BackendBase = Provide[Container.dns_backend],
+        self,
+        auth_backend: AuthBase = Provide[Container.auth_backend],
+        dns_backend: BackendBase = Provide[Container.dns_backend],
     ):
         self.dns_backend = dns_backend
         self.auth_backend = auth_backend
@@ -50,9 +52,9 @@ def create_app(container) -> Sanic:
 
 
 def start_server(
-        container,
-        host: str = Provide[Container.config.http_host],
-        port: int = Provide[Container.config.http_port],
+    container,
+    host: str = Provide[Container.config.http_host],
+    port: int = Provide[Container.config.http_port],
 ):
     app = create_app(container)
     app.run(host=host, port=port)

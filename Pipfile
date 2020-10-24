@@ -19,5 +19,5 @@ sanic = "*"
 python_version = "3.8"
 
 [scripts]
-check_black = "black --check"
+check_black = "black --check ."
 test = "pytest --cov"

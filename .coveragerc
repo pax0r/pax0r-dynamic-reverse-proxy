@@ -1,6 +1,6 @@
 [run]
-omit =
-    .venv/**
+include =
+    pax0r_ddns_server/**
 [report]
 exclude_lines =
     pragma: no cover
