@@ -1,0 +1,7 @@
+[run]
+include =
+    pax0r_ddns_server/**
+[report]
+exclude_lines =
+    pragma: no cover
+    @abstract

@@ -7,6 +7,8 @@ verify_ssl = true
 pytest = "*"
 black = "==20.8b1"
 pre-commit = "*"
+pytest-sanic = "*"
+pytest-cov = "*"
 
 [packages]
 dnslib = "*"
@@ -17,4 +19,5 @@ sanic = "*"
 python_version = "3.8"
 
 [scripts]
-test = "pytest"
+check_black = "black --check ."
+test = "pytest --cov --cov-report=xml"
