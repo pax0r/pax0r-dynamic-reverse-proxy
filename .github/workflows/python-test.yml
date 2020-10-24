@@ -22,4 +22,8 @@ jobs:
     
     - name: Test with pytest
       run: |
+        pipenv run check_black
         pipenv run test
+
+    - name: Upload coverage
+      uses: codecov/codecov-action@v1
