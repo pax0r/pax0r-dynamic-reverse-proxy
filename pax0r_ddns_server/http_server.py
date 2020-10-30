@@ -40,13 +40,18 @@ class SimpleView(HTTPMethodView):
         return json({"ip": self.dns_backend.get_ip(domain)})
 
     @auth_required()
-    @method_decorator(validate_json({
-        "ip": {
-            "type": "string",
-            "regex": r'^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$',
-            "required": False,
-        }
-    }, clean=True))
+    @method_decorator(
+        validate_json(
+            {
+                "ip": {
+                    "type": "string",
+                    "regex": r"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+                    "required": False,
+                }
+            },
+            clean=True,
+        )
+    )
     def post(self, request, domain, valid_json):
         ip = valid_json.get("ip")
         if not ip:

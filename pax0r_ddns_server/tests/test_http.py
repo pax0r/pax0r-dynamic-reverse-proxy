@@ -54,7 +54,6 @@ async def test_post_ip_from_request(app, dns_backend_mock):
     dns_backend_mock.set_ip.assert_called_with("example.com", "127.0.0.1")
 
 
-
 async def test_auth_decorator_not_authorized(app, mock_auth):
     mock_auth.is_authorized.return_value = False
     async with app.asgi_client as client:
