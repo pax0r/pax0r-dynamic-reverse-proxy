@@ -12,7 +12,7 @@ pytest-cov = "*"
 
 [packages]
 dnslib = "*"
-dependency-injector = "*"
+dependency-injector = {extras = ["yaml"], version = "*"}
 sanic = "*"
 
 [requires]
