@@ -13,7 +13,6 @@ DNS server uses `dnslib` and HTTP server runs on `sanic`.
 
 # TODO:
 
-- Set IP from POST request
 - Persistent backends
 - Separate daemon for http and dns (right now it's single process with two threads)
 - Client applications
