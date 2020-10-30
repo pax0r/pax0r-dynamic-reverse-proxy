@@ -36,14 +36,23 @@ async def test_get_ip(app, dns_backend_mock):
     assert data["ip"] == "1.2.3.4"
 
 
-async def test_post_ip(app, dns_backend_mock):
-    dns_backend_mock.get_ip.return_value = "1.2.3.4"
+async def test_post_ip_from_peer(app, dns_backend_mock):
     with app.container.dns_backend.override(dns_backend_mock):
         async with app.asgi_client as client:
-            _, response = await client.post("/example.com", data={})
+            _, response = await client.post("/example.com", json={})
 
-    assert response.status == 200
+    assert response.status == 200, response.text
     dns_backend_mock.set_ip.assert_called_with("example.com", "mockserver")
+
+
+async def test_post_ip_from_request(app, dns_backend_mock):
+    with app.container.dns_backend.override(dns_backend_mock):
+        async with app.asgi_client as client:
+            _, response = await client.post("/example.com", json={"ip": "127.0.0.1"})
+
+    assert response.status == 200, response.text
+    dns_backend_mock.set_ip.assert_called_with("example.com", "127.0.0.1")
+
 
 
 async def test_auth_decorator_not_authorized(app, mock_auth):

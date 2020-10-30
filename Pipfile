@@ -14,6 +14,7 @@ pytest-cov = "*"
 dnslib = "*"
 dependency-injector = {extras = ["yaml"], version = "*"}
 sanic = "*"
+sanic-validation = "*"
 
 [requires]
 python_version = "3.8"

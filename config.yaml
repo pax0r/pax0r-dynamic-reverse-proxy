@@ -1,5 +1,7 @@
 dns_host: localhost
-dns_port: 53
+dns_port: 8053
 
 http_host: localhost
 http_port: 8000
+
+auth_token: "test"
