@@ -16,5 +16,4 @@ DNS server uses `dnslib` and HTTP server runs on `sanic`.
 - Persistent backends
 - Separate daemon for http and dns (right now it's single process with two threads)
 - Client applications
-- More unit tests
 - Rewrite DNSServer to work on asyncio
