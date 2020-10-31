@@ -5,10 +5,12 @@ from sanic import Sanic
 from sanic.exceptions import Unauthorized
 from sanic.response import json
 from sanic.views import HTTPMethodView
+from sanic_validation import validate_json
 
 from pax0r_ddns_server.auth_backends.base import AuthBase
 from pax0r_ddns_server.containers import Container
 from pax0r_ddns_server.dns_backends.base import BackendBase
+from pax0r_ddns_server.utils import method_decorator
 
 
 def auth_required(**backend_kwargs):
@@ -38,8 +40,23 @@ class SimpleView(HTTPMethodView):
         return json({"ip": self.dns_backend.get_ip(domain)})
 
     @auth_required()
-    def post(self, request, domain):
-        self.dns_backend.set_ip(domain, request.ip)
+    @method_decorator(
+        validate_json(
+            {
+                "ip": {
+                    "type": "string",
+                    "regex": r"^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+                    "required": False,
+                }
+            },
+            clean=True,
+        )
+    )
+    def post(self, request, domain, valid_json):
+        ip = valid_json.get("ip")
+        if not ip:
+            ip = request.ip
+        self.dns_backend.set_ip(domain, ip)
         return self.get(request, domain)
 
 

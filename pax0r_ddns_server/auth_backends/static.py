@@ -6,6 +6,8 @@ class StaticAuth(AuthBase):
         self._token = auth_token
 
     def is_authorized(self, request, **kwargs) -> bool:
-        token: str = request.headers.get("Authorization")
-        token = token.replace("Bearer ", "")
-        return token == self._token
+        token: str = request.headers.get("Authorization", "")
+        if "Bearer" in token:
+            token = token.replace("Bearer ", "")
+            return token == self._token
+        return False
