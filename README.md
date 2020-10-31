@@ -14,7 +14,7 @@ DNS server uses `dnslib` and HTTP server runs on `sanic`.
 
 ### Docker
 1. Build image : `docker build -t pax0r .`
-2. Run from image : `docker run --publish 8000:8000  pax0r `
+2. Run from image : `docker run --publish 8000:8000 --publish 53:53 pax0r `
 
 # TODO:
 
