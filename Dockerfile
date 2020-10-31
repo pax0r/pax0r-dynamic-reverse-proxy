@@ -2,10 +2,10 @@ FROM python:3.8
 
 WORKDIR /usr/src/app
 
-RUN pip install dependency-injector
-RUN pip install dnslib
-RUN pip install sanic
-RUN pip install dependency-injector[yaml]
+RUN pip install pipenv
+COPY Pipfile .
+COPY Pipfile.lock .
+RUN pipenv install --deploy --system
 
 RUN mkdir pax0r_ddns_server
 COPY pax0r_ddns_server/ pax0r_ddns_server/
