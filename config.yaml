@@ -1,7 +1,0 @@
-dns_host: 127.0.0.1
-dns_port: 1053
-
-http_host: 127.0.0.1
-http_port: 8000
-
-auth_token: "test"

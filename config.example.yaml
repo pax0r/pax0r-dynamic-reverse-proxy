@@ -1,0 +1,7 @@
+dns_host: localhost
+dns_port: 53
+
+http_host: localhost
+http_port: 8000
+
+auth_token: PUT_YOUR_TOKEN_HERE
