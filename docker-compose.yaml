@@ -3,5 +3,5 @@ services:
   ddns:
     build: .
     ports:
-      - "0.0.0.0:8053:53"
-      - "127.0.0.1:${HOST_PORT}:8000"  # put this behind some nginx
+      - "0.0.0.0:${DNS_PORT:-53}:53"
+      - "127.0.0.1:${HTTP_PORT:-8000}:8000"  # put this behind some nginx
